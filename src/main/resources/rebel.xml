@@ -6,11 +6,4 @@
 		</dir>
 	</classpath>
 
-	<web>
-		<link target="/">
-			<dir name="D:/loc.ecs/src/main/webapp">
-			</dir>
-		</link>
-	</web>
-
 </application>
