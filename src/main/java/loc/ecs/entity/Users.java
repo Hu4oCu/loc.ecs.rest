@@ -2,6 +2,7 @@ package loc.ecs.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 @Entity
 @Table(name = "ecs_users")
@@ -21,10 +22,10 @@ public class Users implements Serializable {
     private String email;
     @Column(name = "pass", nullable = false)
     private String pass;
-    @Column(name = "user_role", nullable = false)
+    @Column(name = "userrole", nullable = false)
     private String userRole;
-    @Column(name = "user_name", nullable = false)
-    private String userName;
+    @Column(name = "username", nullable = false)
+    private String username;
 
     protected Users(){}
 
@@ -35,7 +36,7 @@ public class Users implements Serializable {
         this.email = email;
         this.pass = pass;
         this.userRole = userRole;
-        this.userName = userName;
+        this.username = userName;
     }
 
     public int getUid() {
@@ -95,10 +96,20 @@ public class Users implements Serializable {
     }
 
     public String getUserName() {
-        return userName;
+        return username;
     }
 
     public void setUserName(String userName) {
-        this.userName = userName;
+        this.username = userName;
+    }
+
+    //TODO
+    public Boolean getEnabled() {
+        return true;
+    }
+
+    //TODO
+    public Date getLastPasswordResetDate() {
+        return new Date( Long.MAX_VALUE );
     }
 }

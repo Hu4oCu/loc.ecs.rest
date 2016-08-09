@@ -21,7 +21,8 @@ public class Initializer extends AbstractAnnotationConfigDispatcherServletInitia
     protected Class<?>[] getServletConfigClasses() {
         return new Class<?>[] {
             WebMvcConfig.class,
-            RepositoryRestMvcConfiguration.class
+            RepositoryRestMvcConfiguration.class,
+            WebSecurityConfig.class
         };
     }
 
