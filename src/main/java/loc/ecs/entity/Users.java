@@ -3,6 +3,7 @@ package loc.ecs.entity;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "ecs_users")
@@ -22,20 +23,25 @@ public class Users implements Serializable {
     private String email;
     @Column(name = "pass", nullable = false)
     private String pass;
-    @Column(name = "userrole", nullable = false)
-    private String userRole;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "ecs_user_authority",
+            joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "authority_id", referencedColumnName = "id")})
+    private List<Authority> authorities;
+
     @Column(name = "username", nullable = false)
     private String username;
 
     protected Users(){}
 
-    public Users(String mobileNumber, String firstName, String lastName, String email, String pass, String userRole, String userName) {
+    public Users(String mobileNumber, String firstName, String lastName, String email, String pass, String userName) {
         this.mobileNumber = mobileNumber;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.pass = pass;
-        this.userRole = userRole;
         this.username = userName;
     }
 
@@ -87,12 +93,12 @@ public class Users implements Serializable {
         this.pass = pass;
     }
 
-    public String getUserRole() {
-        return userRole;
+    public List<Authority> getAuthorities() {
+        return authorities;
     }
 
-    public void setUserRole(String userRole) {
-        this.userRole = userRole;
+    public void setAuthorities(List<Authority> authorities) {
+        this.authorities = authorities;
     }
 
     public String getUserName() {

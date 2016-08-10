@@ -23,18 +23,18 @@ public final class JwtUserFactory {
                 user.getLastName(),
                 user.getEmail(),
                 user.getPass(),
-                mapToGrantedAuthorities(getGrantedAuthorities(user)),
+                mapToGrantedAuthorities(user.getAuthorities()),
                 user.getEnabled(),
                 user.getLastPasswordResetDate()
         );
     }
 
-    private static List<Authority> getGrantedAuthorities(Users user) {
-        List<Authority> authorities = new ArrayList<Authority>();
-
-        authorities.add(new Authority());
-        return authorities;
-    }
+//    private static List<Authority> getGrantedAuthorities(Users user) {
+//        List<Authority> authorities = new ArrayList<Authority>();
+//
+//        authorities.add(new Authority());
+//        return authorities;
+//    }
 
     private static List<GrantedAuthority> mapToGrantedAuthorities(List<Authority> authorities) {
         return authorities.stream()

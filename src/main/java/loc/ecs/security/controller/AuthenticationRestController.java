@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
 
 @RestController
-public class    AuthenticationRestController {
+public class  AuthenticationRestController {
 
     @Value("Authorization")
     private String tokenHeader;
