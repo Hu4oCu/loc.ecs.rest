@@ -9,7 +9,7 @@ import javax.servlet.Filter;
 public class Initializer extends AbstractAnnotationConfigDispatcherServletInitializer {
     @Override
     protected String[] getServletMappings() {
-        return new String[] { "/api/*" };
+        return new String[] { "/*" };
     }
 
     @Override

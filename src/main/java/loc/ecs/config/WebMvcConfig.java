@@ -15,13 +15,6 @@ import org.springframework.web.servlet.config.annotation.*;
 @PropertySource("classpath:application.properties")
 @EnableRedisHttpSession
 public class WebMvcConfig extends WebMvcConfigurerAdapter {
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
-    }
-
-
-
     @Bean
     public JedisConnectionFactory connectionFactory() {
         return new JedisConnectionFactory();

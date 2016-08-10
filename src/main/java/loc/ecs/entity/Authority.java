@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "esc_authorities")
+@Table(name = "ecs_authorities")
 public class Authority {
 
     @Id
