@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mobile.device.Device;
+import org.springframework.mobile.device.DevicePlatform;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -48,6 +49,32 @@ public class  AuthenticationRestController {
                 )
         );
         SecurityContextHolder.getContext().setAuthentication(authentication);
+
+        //ASYZDYKOV START
+        // temporary solution all devices are noremal
+        device = new Device() {
+            @Override
+            public boolean isNormal() {
+                return true;
+            }
+
+            @Override
+            public boolean isMobile() {
+                return false;
+            }
+
+            @Override
+            public boolean isTablet() {
+                return false;
+            }
+
+            @Override
+            public DevicePlatform getDevicePlatform() {
+                return DevicePlatform.UNKNOWN;
+            }
+        };
+        //ASYZDYKOV FINISH
+
 
         // Reload password post-security so we can generate token
         final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
