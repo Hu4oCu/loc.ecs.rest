@@ -25,7 +25,7 @@ public class Carts implements Serializable{
     private int user_id;
 
     @JsonView(Carts.Public.class)
-    @Column(insertable = false, updatable = false)
+    @Column(name = "product_id", insertable = false, updatable = false)
     private int product_id;
 
     @JsonView(Carts.Public.class)
@@ -49,13 +49,6 @@ public class Carts implements Serializable{
     protected Carts() {}
 
     public Carts(int uid, int product_id, int count) {
-        this.user_id = uid;
-        this.product_id = product_id;
-        this.count = count;
-    }
-
-    public Carts(int cid, int uid, int product_id, int count) {
-        this.cart_id = cid;
         this.user_id = uid;
         this.product_id = product_id;
         this.count = count;
