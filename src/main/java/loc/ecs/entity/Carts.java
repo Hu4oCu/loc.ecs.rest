@@ -43,7 +43,7 @@ public class Carts implements Serializable{
         return product;
     }
 
-    public void setProduct(Products productsList) {
+    public void setProduct(Products product) {
         this.product = product;
     }
 

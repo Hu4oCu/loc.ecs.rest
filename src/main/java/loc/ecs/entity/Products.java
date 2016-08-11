@@ -10,6 +10,7 @@ public class Products implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "products_seq_gen")
     @SequenceGenerator(name = "products_seq_gen", sequenceName = "product_id_seq")
     @Column(name = "product_id", nullable = false)
+    @PrimaryKeyJoinColumn
     private int product_id;
     @Column(name = "product_name", nullable = false)
     private String name;
@@ -27,7 +28,6 @@ public class Products implements Serializable {
     }
 
     @Column(name = "image", nullable = false)
-
     private String image;
 
     @OneToOne(mappedBy = "product")

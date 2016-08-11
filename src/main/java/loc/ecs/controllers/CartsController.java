@@ -17,7 +17,7 @@ public class CartsController {
     private CartsService cartsService;
 
 
-    @JsonView(Carts.Public.class)
+    @JsonView(Carts.Extended.class)
     @RequestMapping(value = {"", "/"}, method = RequestMethod.GET, produces = "application/json")
     public List<Carts> carts() {
         return cartsService.getCart(1);
