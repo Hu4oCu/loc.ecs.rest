@@ -2,6 +2,7 @@ package loc.ecs.controllers;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import loc.ecs.entity.Carts;
+import loc.ecs.entity.Products;
 import loc.ecs.service.CartsService;
 import loc.ecs.service.ProductsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,11 +37,13 @@ public class CartsController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public void addToCart(@RequestParam(name = "pid") Integer pid) {
+    public String addToCart(@RequestParam(name = "pid") Integer pid) {
         Carts newItem = new Carts(1, pid, 1);
-        newItem.setProduct(productsService.getProductsById(pid));
+
         System.out.println("trying to add product with pid=" + pid);
         cartsService.addtocart(newItem);
+
+        return "{\"value\": true}";
     }
 
 }

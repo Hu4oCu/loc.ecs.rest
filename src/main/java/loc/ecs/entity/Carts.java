@@ -24,8 +24,8 @@ public class Carts implements Serializable{
     @Column(name = "user_id")
     private int user_id;
 
-    @JsonView(Carts.Public.class)
-    @Column(name = "product_id", insertable = false, updatable = false)
+    /*@JsonView(Carts.Public.class)*/
+    @Column(name = "product_id")
     private int product_id;
 
     @JsonView(Carts.Public.class)
@@ -37,7 +37,7 @@ public class Carts implements Serializable{
 
     @Access(AccessType.PROPERTY)
     @OneToOne(targetEntity=Products.class, cascade = CascadeType.ALL, fetch=FetchType.EAGER)
-    @JoinColumn(name="product_id")
+    @JoinColumn(name = "product_id", insertable = false, updatable = false)
     public Products getProduct() {
         return product;
     }

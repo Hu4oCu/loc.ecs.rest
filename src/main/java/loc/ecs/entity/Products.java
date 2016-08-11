@@ -9,7 +9,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "ecs_products")
 public class Products implements Serializable {
-    /*@JsonView(value = Carts.Public.class)*/
+    @JsonView(value = Carts.Public.class)
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "products_seq_gen")
     @SequenceGenerator(name = "products_seq_gen", sequenceName = "product_id_seq")
