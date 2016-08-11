@@ -33,8 +33,7 @@ public class Carts implements Serializable{
     private int count;
 
     @JsonView(Extended.class)
-    Products product;
-
+    private Products product;
 
     @Access(AccessType.PROPERTY)
     @OneToOne(targetEntity=Products.class, cascade = CascadeType.ALL, fetch=FetchType.EAGER)
@@ -43,7 +42,7 @@ public class Carts implements Serializable{
         return product;
     }
 
-    public void setProduct(Products productsList) {
+    public void setProduct(Products product) {
         this.product = product;
     }
 

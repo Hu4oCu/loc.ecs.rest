@@ -1,23 +1,37 @@
 package loc.ecs.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 @Table(name = "ecs_products")
 public class Products implements Serializable {
+    @JsonView(value = Carts.Public.class)
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "products_seq_gen")
     @SequenceGenerator(name = "products_seq_gen", sequenceName = "product_id_seq")
     @Column(name = "product_id", nullable = false)
     private int product_id;
+    @JsonView(value = Carts.Public.class)
     @Column(name = "product_name", nullable = false)
     private String name;
+    @JsonView(value = Carts.Public.class)
     @Column(name = "description", nullable = false)
     private String description;
+    @JsonView(value = Carts.Public.class)
     @Column(name = "price", nullable = false)
     private int price;
+    @JsonView(value = Carts.Public.class)
+    @Column(name = "image", nullable = false)
+    private String image;
 
+    @OneToOne(mappedBy = "product")
+    private Carts carts;
+
+    @JsonIgnore
     public Carts getCarts() {
         return carts;
     }
@@ -25,14 +39,6 @@ public class Products implements Serializable {
     public void setCarts(Carts carts) {
         this.carts = carts;
     }
-
-    @Column(name = "image", nullable = false)
-
-    private String image;
-
-    @OneToOne(mappedBy = "product")
-    private Carts carts;
-
 
     protected Products() {}
 
