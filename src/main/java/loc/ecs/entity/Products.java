@@ -28,18 +28,6 @@ public class Products implements Serializable {
     @Column(name = "image", nullable = false)
     private String image;
 
-    @OneToOne(mappedBy = "product")
-    private Carts carts;
-
-    @JsonIgnore
-    public Carts getCarts() {
-        return carts;
-    }
-
-    public void setCarts(Carts carts) {
-        this.carts = carts;
-    }
-
     protected Products() {}
 
     public Products(int product_id, String name, String description, int price, String image) {
