@@ -1,7 +1,6 @@
 package loc.ecs.controllers;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import loc.ecs.entity.Carts;
 import loc.ecs.service.CartsService;
@@ -46,7 +45,7 @@ public class CartsController {
 
     @RequestMapping(value = "/add", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
                     produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public String addJson(@RequestBody String body) throws IOException {
+    public String add(@RequestBody String body) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
 
         Integer user_id = objectMapper.readTree(body).get("user_id").asInt();
@@ -57,9 +56,22 @@ public class CartsController {
 
         cartsService.addtocart(newItem);
 
-        return "{\"user_id\":" + user_id + "," +
-               "\"price\":" + productsService.getProductsById(product_id).getPrice() + "," +
+        return "{\"price\":" + productsService.getProductsById(product_id).getPrice() + "," +
                "\"cart_size\":" + cartsService.getCart(1).size() + "}";
+    }
+
+    @RequestMapping(value = "/remove", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public String remove(@RequestBody String body) throws Exception {
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        Integer user_id = objectMapper.readTree(body).get("user_id").asInt();
+        Integer product_id = objectMapper.readTree(body).get("product_id").asInt();
+
+        cartsService.deletePid(user_id, product_id);
+
+        Integer product_count = cartsService.getCart(1).size();
+
+        return product_count.toString();
     }
 
 }
